@@ -16,6 +16,7 @@ Permite explorar personajes, ver detalles y practicar integración con APIs púb
 
 ## 📂 Estructura del proyecto
 
+```plaintext
 rick--and--morty/
 ├── public/
 ├── src/
@@ -24,6 +25,7 @@ rick--and--morty/
 │   ├── store/        # Configuración Redux
 │   └── App.js
 └── package.json
+```
 
 ---
 

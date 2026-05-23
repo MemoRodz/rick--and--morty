@@ -14,7 +14,7 @@ Permite explorar personajes, ver detalles y practicar integración con APIs púb
 
 ---
 
-📂 Estructura del proyecto
+## 📂 Estructura del proyecto
 
 rick--and--morty/
 ├── public/

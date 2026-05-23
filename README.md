@@ -29,14 +29,6 @@ rick--and--morty/
 
 ---
 
-## 👨‍💻 Autor
-Guillermo Rodríguez  
-Full Stack Developer | Especialista en .NET, SQL Server, Node.Js y React
-
-📫 [LinkedIn](https://linkedin.com/in/guillermo-rodríguez-74b10039) | [GitHub](https://github.com/memorodz)
-
----
-
 ## 📦 Instalación
 Clona el repositorio y ejecuta:
 
@@ -46,6 +38,16 @@ cd rick_and_morty
 npm install
 npm start
 ```
+
+---
+
+## 👨‍💻 Autor
+Guillermo Rodríguez  
+Full Stack Developer | Especialista en .NET, SQL Server, Node.Js y React
+
+📫 [LinkedIn](https://linkedin.com/in/guillermo-rodríguez-74b10039) | [GitHub](https://github.com/memorodz)
+
+---
 
 ## 📜 Licencia
 Este proyecto está bajo la licencia GNU (General Public License v3.0 y MIT License).

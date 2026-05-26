@@ -3,7 +3,7 @@ import {
   DELETE_FAVORITES,
   ORDER,
   FILTER,
-  RESET
+  RESET,
 } from "./action_type";
 
 const initialState = {
@@ -11,47 +11,68 @@ const initialState = {
   myFavoritesOrigin: [],
 };
 
-export default function rootReducer(state = initialState, { type, payload }) {
+export default function rootReducer(state = initialState, action) {
+  const { type, payload } = action;
+
   switch (type) {
-    case ADD_FAVORITES:
+    case ADD_FAVORITES: {
+      const exists = state.myFavoritesOrigin.some((ch) => ch.id === payload.id);
+      if (exists) {
+        return state;
+      }
+
+      const updatedFavorites = [...state.myFavoritesOrigin, payload];
+
       return {
         ...state,
-        myFavorites: [...state.myFavoritesOrigin, payload],
-        myFavoritesOrigin: [...state.myFavoritesOrigin, payload],
+        myFavorites: updatedFavorites,
+        myFavoritesOrigin: updatedFavorites,
       };
-    case DELETE_FAVORITES:
-      const filtered = state.myFavorites.filter((ch) => {
-        return ch.id !== payload;
-      });
+    }
+
+    case DELETE_FAVORITES: {
+      const updatedFavorites = state.myFavoritesOrigin.filter(
+        (ch) => ch.id !== payload
+      );
+
       return {
         ...state,
-        myFavorites: filtered,
-        myFavoritesOrigin: filtered,
+        myFavorites: updatedFavorites,
+        myFavoritesOrigin: updatedFavorites,
       };
-    case FILTER:
-      const filterCopy = [...state.myFavoritesOrigin];
-      const filter = filterCopy.filter((ch) => ch.gender === payload);
+    }
+
+    case FILTER: {
+      const filteredFavorites = state.myFavoritesOrigin.filter(
+        (ch) => ch.gender === payload
+      );
+
       return {
         ...state,
-        myFavorites: filter,
+        myFavorites: filteredFavorites,
       };
-    case ORDER:
-      const orderCopy = [...state.myFavoritesOrigin];
-      // console.log("payload", payload);
-      const order = orderCopy.sort((a, b) => {
-        if (a.id > b.id) {
-          return "Ascendente" === payload ? 1 : -1;
+    }
+
+    case ORDER: {
+      const orderedFavorites = [...state.myFavorites].sort((a, b) => {
+        if (payload === "Ascendente") {
+          return a.id - b.id;
         }
-        if (a.id < b.id) {
-          return "Descendente" === payload ? 1 : -1;
+
+        if (payload === "Descendente") {
+          return b.id - a.id;
         }
+
         return 0;
       });
+
       return {
         ...state,
-        myFavorites: order,
+        myFavorites: orderedFavorites,
       };
-      case RESET:
+    }
+
+    case RESET:
       return {
         ...state,
         myFavorites: [...state.myFavoritesOrigin],
